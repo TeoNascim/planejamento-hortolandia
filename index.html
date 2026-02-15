@@ -11,21 +11,24 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
         }
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 5mm;
+                margin: 8mm;
             }
             body {
-                background-color: white;
+                background-color: white !important;
                 margin: 0;
                 padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .no-print {
                 display: none !important;
+            }
+            .print-only {
+                display: block !important;
             }
             .print-container {
                 padding: 0 !important;
@@ -33,32 +36,51 @@
                 width: 100% !important;
                 max-width: none !important;
             }
-            table, th, td {
-                border: 1px solid #000 !important;
+            table {
+                width: 100% !important;
                 border-collapse: collapse !important;
+                table-layout: fixed !important;
+            }
+            table, th, td {
+                border: 1px solid #333 !important;
             }
             th {
                 background-color: #0f172a !important;
                 color: white !important;
-                -webkit-print-color-adjust: exact;
+                font-size: 8px !important;
+                padding: 4px !important;
             }
-            .bg-slate-50 {
-                background-color: #f8fafc !important;
+            td {
+                font-size: 9px !important;
+                padding: 4px !important;
+                vertical-align: top !important;
             }
-            textarea {
+            textarea, input {
                 border: none !important;
+                outline: none !important;
                 resize: none !important;
                 overflow: hidden !important;
                 width: 100% !important;
-                min-height: auto !important;
+                background: transparent !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-size: 9px !important;
+                height: auto !important;
+                display: block !important;
+            }
+            .bg-slate-50, .bg-slate-900 {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             tr {
                 page-break-inside: avoid;
-                page-break-after: auto;
             }
             thead {
                 display: table-header-group;
             }
+        }
+        .print-only {
+            display: none;
         }
     </style>
 <script type="importmap">
@@ -74,7 +96,6 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root"></div>
