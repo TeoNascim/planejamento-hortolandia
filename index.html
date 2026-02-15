@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,7 +14,7 @@
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 8mm;
+                margin: 5mm;
             }
             body {
                 background-color: white !important;
@@ -40,43 +39,38 @@
                 width: 100% !important;
                 border-collapse: collapse !important;
                 table-layout: fixed !important;
-            }
-            table, th, td {
-                border: 1px solid #333 !important;
+                border: 1px solid #000 !important;
             }
             th {
-                background-color: #0f172a !important;
-                color: white !important;
+                background-color: #f1f5f9 !important;
+                color: #000 !important;
                 font-size: 8px !important;
                 padding: 4px !important;
+                text-transform: uppercase !important;
+                border: 1px solid #000 !important;
+                font-weight: 900 !important;
             }
             td {
                 font-size: 9px !important;
-                padding: 4px !important;
+                padding: 5px !important;
                 vertical-align: top !important;
+                border: 1px solid #000 !important;
+                word-wrap: break-word !important;
             }
             textarea, input {
                 border: none !important;
                 outline: none !important;
                 resize: none !important;
-                overflow: hidden !important;
                 width: 100% !important;
                 background: transparent !important;
-                padding: 0 !important;
-                margin: 0 !important;
                 font-size: 9px !important;
                 height: auto !important;
                 display: block !important;
-            }
-            .bg-slate-50, .bg-slate-900 {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                overflow: visible !important;
+                color: #000 !important;
             }
             tr {
-                page-break-inside: avoid;
-            }
-            thead {
-                display: table-header-group;
+                page-break-inside: auto !important;
             }
         }
         .print-only {
