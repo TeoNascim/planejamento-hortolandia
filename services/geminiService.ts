@@ -1,7 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
-// Inicializa a IA usando a variável de ambiente configurada na Vercel
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
 export const suggestEducationalContent = async (contexto: string) => {
@@ -30,15 +29,13 @@ export const suggestEducationalContent = async (contexto: string) => {
       }
     });
 
-    // Esta verificação de 'typeof' é o que resolve o erro no log da Vercel.
-    // Ela garante ao TypeScript que 'textOutput' é obrigatoriamente uma string antes do JSON.parse.
     const textOutput = response.text;
     
-    if (typeof textOutput === 'string') {
+    // Verificação robusta para evitar erro TS2345 na Vercel
+    if (textOutput && typeof textOutput === 'string') {
       return JSON.parse(textOutput);
     }
     
-    console.warn("IA retornou conteúdo vazio ou inválido.");
     return null;
     
   } catch (error) {
