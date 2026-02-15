@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PlanningData, PlanningRow } from './types';
 import { suggestEducationalContent } from './services/geminiService';
@@ -53,7 +52,7 @@ const SKILLS = [
   { id: "EF12EF05", text: "(EF12EF05) Experimentar e fruir, prezando pelo trabalho coletivo e pelo protagonismo, a prática de esportes de marca e de precisão, identificando os elementos comuns a esses esportes." },
   { id: "EF12EF06", text: "(EF12EF06) Discutir a importância da observação das normas e das regras dos esportes de marca e de precisão para assegurar a integridade própria e as dos demais participantes." },
   { id: "EF12EF07", text: "(EF12EF07) Experimentar, fruir e identificar differentes elementos básicos da ginástica (equilíbrios, saltos, giros, rotações, acrobacias, com e sem materiais) e da ginástica geral, de forma individual e em pequenos grupos, adotando procedimentos de segurança." },
-  { id: "EF12EF08", text: "(EF12EF08) Planejar e utilizar estratégias para a execução de diferentes elementos básicos da ginástica e da ginástica geral." },
+  { id: "EF12EF08", text: "(EF12EF08) Planejar e utilizar estratégias para a execução de differentes elementos básicos da ginástica e da ginástica geral." },
   { id: "EF12EF09", text: "(EF12EF09) Participar da ginástica geral, identificando as potencialidades e os limites do corpo, e respeitando as diferenças individuais e de desempenho corporal." },
   { id: "EF12EF10", text: "(EF12EF10) Descrever, por meio de múltiplas linguagens (corporal, oral, escrita e audiovisual), as características dos elementos básicos da ginástica e da ginástica geral, identificando a presença desses elementos em distintas práticas corporais." },
   { id: "EF12EF11", text: "(EF12EF11) Experimentar e fruir diferentes danças do contexto comunitário e regional (rodas cantadas, brincadeiras rítmicas e expressivas), e recriá-las, respeitando as diferenças individuais e de desempenho corporal." },
@@ -99,9 +98,6 @@ const FIXED_ADAPTATION_TEXT = [
   "Para isso, é necessário conhecer as necessidades individuais, como apoio na locomoção, ajustes no tempo, dificuldades auditivas, visuais ou de compreensão.",
   "Entre as principais ações estão: garantir comunicação acessível a todos, organizar o posicionamento adequado dos estudantes (especialmente cadeirantes), estimular a participação e interação no grupo e oferecer diferentes formas de envolvimento, inclusive com estímulos sensoriais e materiais variados, favorecendo a compreensão da atividade e do espaço."
 ];
-
-// Logo de Hortolândia fornecido pelo usuário (simulado por URL ou Placeholder similar)
-const HORTOLANDIA_LOGO = "https://raw.githubusercontent.com/AI-Hortolandia/assets/main/logo_hortolandia.png"; 
 
 const App: React.FC = () => {
   const [data, setData] = useState<PlanningData>({
@@ -239,10 +235,33 @@ const App: React.FC = () => {
       {/* Main Form Content */}
       <main className="max-w-[1400px] mx-auto p-4 md:p-8 print-container">
         
-        {/* Official Header Structure (Based on Hortolândia Attachment) */}
-        <div className="flex flex-col gap-6 mb-8 border-b-4 border-slate-900 pb-6 print:border-b-2">
+        {/* Print Only Header (Compacto conforme solicitado) */}
+        <div className="hidden print:block mb-4 border-b-2 border-slate-900 pb-2">
+          <div className="flex items-center justify-between mb-2">
+            <div className="w-16 h-16">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bras%C3%A3o_de_Hortol%C3%A2ndia.png/1200px-Bras%C3%A3o_de_Hortol%C3%A2ndia.png" 
+                alt="Logo Hortolândia" 
+                className="w-full h-full object-contain" 
+              />
+            </div>
+            <div className="flex-1 text-center">
+              <h2 className="text-lg font-black uppercase text-slate-900">Planejamento Mensal</h2>
+              <p className="text-[10px] font-bold text-slate-600 uppercase">Prefeitura Municipal de Hortolândia - Secretaria de Educação</p>
+            </div>
+            <div className="w-16"></div>
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-[10px]">
+            <div><span className="font-black uppercase">Unidade Escolar:</span> {data.unidadeEscolar}</div>
+            <div><span className="font-black uppercase">Professor(a):</span> {data.professor}</div>
+            <div><span className="font-black uppercase">Mês/Ano:</span> {data.mes}</div>
+            <div><span className="font-black uppercase">Ano/Turma:</span> {data.anoTurma}</div>
+          </div>
+        </div>
+
+        {/* Screen Only Header (O que o usuário vê na tela) */}
+        <div className="no-print flex flex-col gap-6 mb-8 border-b-4 border-slate-900 pb-6">
           <div className="flex items-center gap-6">
-             {/* Logo Section */}
              <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 flex items-center justify-center p-1 bg-white border-2 border-slate-900 rounded-full overflow-hidden shadow-md">
                <img 
                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bras%C3%A3o_de_Hortol%C3%A2ndia.png/1200px-Bras%C3%A3o_de_Hortol%C3%A2ndia.png" 
@@ -250,8 +269,6 @@ const App: React.FC = () => {
                  className="w-full h-full object-contain" 
                />
              </div>
-             
-             {/* Title Section */}
              <div className="flex flex-col justify-center">
                <h3 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-widest leading-none">Prefeitura Municipal de Hortolândia</h3>
                <h4 className="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider mt-1">Secretaria Municipal de Educação</h4>
@@ -259,7 +276,7 @@ const App: React.FC = () => {
              </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm bg-white p-6 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] print:border-none print:shadow-none print:p-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm bg-white p-6 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
             <div className="flex flex-col gap-1">
               <label className="font-black text-slate-900 uppercase text-[10px] tracking-widest">Unidade Escolar</label>
               <input 
@@ -267,7 +284,7 @@ const App: React.FC = () => {
                 value={data.unidadeEscolar}
                 onChange={(e) => handleInputChange('unidadeEscolar', e.target.value)}
                 placeholder="Nome da Instituição"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -277,7 +294,7 @@ const App: React.FC = () => {
                 value={data.professor}
                 onChange={(e) => handleInputChange('professor', e.target.value)}
                 placeholder="Responsáveis pelo planejamento"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -287,7 +304,7 @@ const App: React.FC = () => {
                 value={data.mes}
                 onChange={(e) => handleInputChange('mes', e.target.value)}
                 placeholder="Ex: Abril/2024"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -297,22 +314,22 @@ const App: React.FC = () => {
                 value={data.anoTurma}
                 onChange={(e) => handleInputChange('anoTurma', e.target.value)}
                 placeholder="Ex: 2º Ciclo - Turma B"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
           </div>
         </div>
 
         {/* Table Structure */}
-        <div className="overflow-hidden border-2 border-slate-900 bg-white shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] print:shadow-none print:border">
-          <table className="w-full border-collapse table-fixed">
+        <div className="overflow-hidden border-2 border-slate-900 bg-white shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] print:shadow-none print:border-none">
+          <table className="w-full border-collapse">
             <thead>
               <tr className="bg-slate-900 text-white border-b-2 border-slate-900">
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Unidade Temática / Objeto de Conhecimento</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Habilidades</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[20%]">Estratégias Metodológicas</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[14%]">Recursos</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Avaliação</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Unidade Temática / Objeto de Conhecimento</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Habilidades</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[20%]">Estratégias Metodológicas</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[14%]">Recursos</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Avaliação</th>
                 <th className="p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Adaptação Curricular</th>
               </tr>
             </thead>
@@ -320,8 +337,8 @@ const App: React.FC = () => {
               {data.rows.map((row) => (
                 <tr key={row.id} className="relative group border-b-2 border-slate-900 last:border-b-0 print:break-inside-avoid">
                   {/* Coluna 1: Unidade e Objeto */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print space-y-1 p-2 bg-slate-50 border-b border-slate-200">
                         <select 
                           className="w-full p-2 outline-none text-[10px] font-black bg-white text-emerald-800 border-2 border-emerald-100 rounded focus:border-emerald-500"
@@ -346,17 +363,15 @@ const App: React.FC = () => {
                         </select>
                       </div>
                       
-                      <div className="p-3 text-[11px] leading-relaxed text-slate-900">
-                        {row.unidadeTematica && <div className="font-black uppercase mb-2 text-emerald-700">{row.unidadeTematica}</div>}
+                      <div className="p-3 text-[11px] print:text-[9px] leading-relaxed text-slate-900">
+                        {row.unidadeTematica && <div className="font-black uppercase mb-1 text-emerald-700">{row.unidadeTematica}</div>}
                         {row.objetoConhecimento && <div className="font-semibold text-slate-700">{row.objetoConhecimento}</div>}
-                        {!row.unidadeTematica && !row.objetoConhecimento && <span className="no-print text-slate-300 italic font-normal">Nenhum selecionado</span>}
                       </div>
 
                       <button 
                         onClick={() => handleAiSuggest(row.id, row.unidadeTematica, row.objetoConhecimento)}
                         disabled={isAiLoading === row.id}
                         className="no-print absolute bottom-2 right-2 p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all shadow-md flex items-center gap-1 text-[9px] font-black uppercase tracking-tighter"
-                        title="Gerar sugestões pedagógicas com IA"
                       >
                         {isAiLoading === row.id ? (
                           <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin rounded-full" />
@@ -369,46 +384,40 @@ const App: React.FC = () => {
                   </td>
 
                   {/* Coluna 2: Habilidades */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print p-2 bg-slate-50 border-b border-slate-200">
                         <div className="max-h-32 overflow-y-auto border-2 border-slate-200 rounded p-1 bg-white space-y-1">
-                          <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1 mb-1">Habilidades:</div>
                           {SKILLS.map((skill) => (
-                            <label key={skill.id} className="flex items-start gap-2 p-1.5 hover:bg-slate-50 cursor-pointer rounded transition-colors group">
+                            <label key={skill.id} className="flex items-start gap-2 p-1 hover:bg-slate-50 cursor-pointer rounded">
                               <input 
                                 type="checkbox"
                                 checked={row.habilidades.includes(skill.text)}
                                 onChange={() => toggleSkill(row.id, skill.text)}
-                                className="mt-0.5 w-3 h-3 text-emerald-600 rounded focus:ring-emerald-500"
+                                className="mt-0.5 w-3 h-3 text-emerald-600"
                               />
-                              <span className="text-[9px] font-bold text-slate-600 leading-tight group-hover:text-slate-900">{skill.id}</span>
+                              <span className="text-[9px] font-bold text-slate-600 leading-tight">{skill.id}</span>
                             </label>
                           ))}
                         </div>
                       </div>
 
                       <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:font-normal placeholder:text-slate-300"
+                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent"
                         placeholder="Habilidades selecionadas..."
                         value={row.habilidades}
                         onChange={(e) => handleRowChange(row.id, 'habilidades', e.target.value)}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement;
-                          target.style.height = 'auto';
-                          target.style.height = target.scrollHeight + 'px';
-                        }}
                       />
                     </div>
                   </td>
 
                   {/* Coluna 3: Estratégias Metodológicas */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           {FIXED_METHODOLOGY_TEXT.map((text, idx) => (
-                            <p key={idx} className={`text-[10px] leading-relaxed ${text.includes("Atividades desenvolvidas:") ? 'font-black' : 'font-medium'}`}>
+                            <p key={idx} className={`text-[10px] print:text-[8px] leading-relaxed ${text.includes("Atividades desenvolvidas:") ? 'font-black' : 'font-medium'}`}>
                               {text}
                             </p>
                           ))}
@@ -416,8 +425,8 @@ const App: React.FC = () => {
                       </div>
                       
                       <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Descreva aqui as atividades específicas..."
+                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent"
+                        placeholder="Atividades específicas..."
                         value={row.estrategias}
                         onChange={(e) => handleRowChange(row.id, 'estrategias', e.target.value)}
                       />
@@ -425,27 +434,26 @@ const App: React.FC = () => {
                   </td>
 
                   {/* Coluna 4: Recursos */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print p-2 bg-slate-50 border-b border-slate-200">
                         <div className="max-h-32 overflow-y-auto border-2 border-slate-200 rounded p-1 bg-white space-y-1">
-                          <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1 mb-1">Recursos Sugeridos:</div>
                           {RESOURCES_LIST.map((resource) => (
-                            <label key={resource} className="flex items-center gap-2 p-1.5 hover:bg-slate-50 cursor-pointer rounded transition-colors group">
+                            <label key={resource} className="flex items-center gap-2 p-1 hover:bg-slate-50 cursor-pointer rounded">
                               <input 
                                 type="checkbox"
                                 checked={row.recursos.includes(resource)}
                                 onChange={() => toggleResource(row.id, resource)}
-                                className="w-3 h-3 text-emerald-600 rounded focus:ring-emerald-500"
+                                className="w-3 h-3 text-emerald-600"
                               />
-                              <span className="text-[9px] font-bold text-slate-600 leading-tight group-hover:text-slate-900">{resource}</span>
+                              <span className="text-[9px] font-bold text-slate-600 leading-tight">{resource}</span>
                             </label>
                           ))}
                         </div>
                       </div>
 
                       <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
+                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent"
                         placeholder="Recursos..."
                         value={row.recursos}
                         onChange={(e) => handleRowChange(row.id, 'recursos', e.target.value)}
@@ -454,17 +462,17 @@ const App: React.FC = () => {
                   </td>
 
                   {/* Coluna 5: Avaliação */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <p className="text-[10px] font-medium leading-relaxed">
+                        <p className="text-[10px] print:text-[8px] font-medium leading-relaxed">
                           {FIXED_EVALUATION_TEXT}
                         </p>
                       </div>
                       
                       <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Informações adicionais da avaliação..."
+                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent"
+                        placeholder="Mais avaliação..."
                         value={row.avaliacao}
                         onChange={(e) => handleRowChange(row.id, 'avaliacao', e.target.value)}
                       />
@@ -473,11 +481,11 @@ const App: React.FC = () => {
 
                   {/* Coluna 6: Adaptação Curricular */}
                   <td className="p-0 align-top relative">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           {FIXED_ADAPTATION_TEXT.map((text, idx) => (
-                            <p key={idx} className="text-[10px] font-medium leading-relaxed">
+                            <p key={idx} className="text-[10px] print:text-[8px] font-medium leading-relaxed">
                               {text}
                             </p>
                           ))}
@@ -485,15 +493,15 @@ const App: React.FC = () => {
                       </div>
                       
                       <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Informações adicionais de adaptação..."
+                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent"
+                        placeholder="Mais adaptação..."
                         value={row.adaptacao}
                         onChange={(e) => handleRowChange(row.id, 'adaptacao', e.target.value)}
                       />
                     </div>
                     <button 
                       onClick={() => removeRow(row.id)}
-                      className="no-print absolute -right-10 top-2 p-2 text-slate-400 hover:text-red-500 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
+                      className="no-print absolute -right-10 top-2 p-2 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       <TrashIcon className="w-5 h-5" />
                     </button>
@@ -503,11 +511,11 @@ const App: React.FC = () => {
             </tbody>
           </table>
           
-          {/* Botão de Adicionar */}
+          {/* Adicionar Unidade */}
           <div className="no-print p-4 bg-slate-50 flex justify-center border-t-2 border-slate-900">
             <button 
               onClick={addRow}
-              className="flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white px-8 py-2.5 rounded-full transition-all font-black text-xs shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-1 active:translate-y-1"
+              className="flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white px-8 py-2 rounded-full transition-all font-black text-xs shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]"
             >
               <PlusIcon className="w-5 h-5" />
               <span>ADICIONAR UNIDADE DIDÁTICA</span>
@@ -515,33 +523,31 @@ const App: React.FC = () => {
           </div>
           
           {/* Observações */}
-          <div className="border-t-2 border-slate-900 p-6 bg-white min-h-[120px] print:border-t">
-            <label className="block font-black text-slate-900 uppercase text-[11px] mb-3 tracking-widest border-l-4 border-emerald-600 pl-2">Observações Adicionais / Ocorrências Mensais</label>
+          <div className="border-t-2 border-slate-900 p-4 bg-white min-h-[80px] print:border-t">
+            <label className="block font-black text-slate-900 uppercase text-[10px] mb-2 tracking-widest border-l-4 border-emerald-600 pl-2">Observações Adicionais / Ocorrências Mensais</label>
             <textarea 
               value={data.observacoes}
               onChange={(e) => handleInputChange('observacoes', e.target.value)}
-              className="w-full h-24 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-700 bg-transparent placeholder:text-slate-200"
+              className="w-full h-16 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-700 bg-transparent"
               placeholder="Anotações gerais..."
             />
           </div>
         </div>
 
-        {/* Rodapé de Impressão (Fiel ao modelo) */}
-        <div className="mt-12 hidden print:block">
-          <div className="flex justify-between items-end border-t-2 border-slate-900 pt-6">
-            <div className="flex flex-col gap-1">
-              <div className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">
-                Documento gerado eletronicamente em: {new Date().toLocaleDateString('pt-BR')} às {new Date().toLocaleTimeString('pt-BR')}
-              </div>
+        {/* Rodapé de Impressão (Compacto) */}
+        <div className="mt-8 hidden print:block">
+          <div className="flex justify-between items-end border-t border-slate-400 pt-4">
+            <div className="text-[8px] text-slate-500 font-bold uppercase">
+              Gerado em: {new Date().toLocaleDateString('pt-BR')} {new Date().toLocaleTimeString('pt-BR')}
             </div>
-            <div className="flex gap-16">
+            <div className="flex gap-12">
               <div className="flex flex-col items-center">
-                <div className="w-64 border-b-2 border-slate-900 mb-2"></div>
-                <span className="text-[10px] font-black uppercase text-slate-900 tracking-tighter italic">Assinatura do(a) Professor(a)</span>
+                <div className="w-48 border-b border-slate-900 mb-1"></div>
+                <span className="text-[9px] font-black uppercase text-slate-900">Assinatura Professor(a)</span>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-64 border-b-2 border-slate-900 mb-2"></div>
-                <span className="text-[10px] font-black uppercase text-slate-900 tracking-tighter italic">Visto da Coordenação Pedagógica</span>
+                <div className="w-48 border-b border-slate-900 mb-1"></div>
+                <span className="text-[9px] font-black uppercase text-slate-900">Visto Coordenação</span>
               </div>
             </div>
           </div>
