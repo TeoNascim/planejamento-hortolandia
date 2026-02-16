@@ -57,7 +57,7 @@ const SKILLS = [
   { id: "EF12EF09", text: "(EF12EF09) Participar da ginástica geral, identificando as potencialidades e os limites do corpo, e respeitando as diferenças individuais e de desempenho corporal." },
   { id: "EF12EF10", text: "(EF12EF10) Descrever, por meio de múltiplas linguagens (corporal, oral, escrita e audiovisual), as características dos elementos básicos da ginástica e da ginástica geral, identificando a presença desses elementos em distintas práticas corporais." },
   { id: "EF12EF11", text: "(EF12EF11) Experimentar e fruir diferentes danças do contexto comunitário e regional (rodas cantadas, brincadeiras rítmicas e expressivas), e recriá-las, respeitando as diferenças individuais e de desempenho corporal." },
-  { id: "EF35EF01", text: "(EF35EF01) Experimentar e fruir brincadeiras e jogos populares do Brasil e do mundo, incluindo aqueles de matriz indígena e africana, e recriá-los, valorizando a importância desse patrimônio histórico cultural." },
+  { id: "EF35EF01", text: "(EF35EF01) Experimentar e fruir brincadeiras e jogos populares do Brasil e do mundo, incluindo those of matriz indígena e africana, e recriá-los, valorizando a importância desse patrimônio histórico cultural." },
   { id: "EF35EF02", text: "(EF35EF02) Planejar e utilizar estratégias para possibilitar a participação segura de todos os alunos em brincadeiras e jogos populares do Brasil e de matriz indígena e africana." },
   { id: "EF35EF03", text: "(EF35EF03) Descrever, por meio de múltiplas linguagens (corporal, oral, escrita, audiovisual), as brincadeiras e os jogos populares do Brasil e de matriz indígena e africana, explicando suas características e a importância desse patrimônio histórico cultural na preservação das differentes culturas." },
   { id: "EF35EF04", text: "(EF35EF04) Recriar, individual e coletivamente, e experimentar, na escola e fora dela, brincadeiras e jogos populares do Brasil e do mundo, incluindo aqueles de matriz indígena e africana, e demais práticas corporais tematizadas na escola, adequando-as aos espaços públicos disponíveis." },
@@ -99,9 +99,6 @@ const FIXED_ADAPTATION_TEXT = [
   "Para isso, é necessário conhecer as necessidades individuais, como apoio na locomoção, ajustes no tempo, dificuldades auditivas, visuais ou de compreensão.",
   "Entre as principais ações estão: garantir comunicação acessível a todos, organizar o posicionamento adequado dos estudantes (especialmente cadeirantes), estimular a participação e interação no grupo e oferecer diferentes formas de envolvimento, inclusive com estímulos sensoriais e materiais variados, favorecendo a compreensão da atividade e do espaço."
 ];
-
-// Logo de Hortolândia fornecido pelo usuário (simulado por URL ou Placeholder similar)
-const HORTOLANDIA_LOGO = "https://raw.githubusercontent.com/AI-Hortolandia/assets/main/logo_hortolandia.png"; 
 
 const App: React.FC = () => {
   const [data, setData] = useState<PlanningData>({
@@ -217,7 +214,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-20 bg-slate-50">
-      {/* Header Bar */}
       <header className="no-print sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="bg-emerald-600 p-2 rounded-lg shadow-inner">
@@ -236,13 +232,44 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Form Content */}
       <main className="max-w-[1400px] mx-auto p-4 md:p-8 print-container">
         
-        {/* Official Header Structure (Based on Hortolândia Attachment) */}
-        <div className="flex flex-col gap-6 mb-8 border-b-4 border-slate-900 pb-6 print:border-b-2">
+        {/* CABEÇALHO PARA O PDF (Compacto e lado a lado) */}
+        <div className="hidden print:block mb-4 border-b-2 border-slate-900 pb-4">
+          <div className="flex items-center gap-4 mb-4">
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bras%C3%A3o_de_Hortol%C3%A2ndia.png/1200px-Bras%C3%A3o_de_Hortol%C3%A2ndia.png" 
+              alt="Logo Hortolândia" 
+              className="w-12 h-12 object-contain" 
+            />
+            <div className="flex flex-col">
+              <h1 className="text-lg font-black text-slate-900 uppercase leading-none">Planejamento Mensal</h1>
+              <p className="text-[8px] font-bold text-slate-600 uppercase">Prefeitura Municipal de Hortolândia - Secretaria de Educação</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-[10px]">
+            <div className="flex flex-col border-b border-slate-300">
+              <span className="font-black text-slate-900 uppercase text-[8px]">Unidade Escolar</span>
+              <span className="font-bold text-slate-800">{data.unidadeEscolar || "_________________________________"}</span>
+            </div>
+            <div className="flex flex-col border-b border-slate-300">
+              <span className="font-black text-slate-900 uppercase text-[8px]">Professor(a) / Agentes</span>
+              <span className="font-bold text-slate-800">{data.professor || "_________________________________"}</span>
+            </div>
+            <div className="flex flex-col border-b border-slate-300">
+              <span className="font-black text-slate-900 uppercase text-[8px]">Período (Mês / Ano)</span>
+              <span className="font-bold text-slate-800">{data.mes || "_________________________________"}</span>
+            </div>
+            <div className="flex flex-col border-b border-slate-300">
+              <span className="font-black text-slate-900 uppercase text-[8px]">Público-Alvo (Ano / Turma)</span>
+              <span className="font-bold text-slate-800">{data.anoTurma || "_________________________________"}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* CABEÇALHO PARA A TELA (Permanece igual ao anterior) */}
+        <div className="no-print flex flex-col gap-6 mb-8 border-b-4 border-slate-900 pb-6">
           <div className="flex items-center gap-6">
-             {/* Logo Section */}
              <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 flex items-center justify-center p-1 bg-white border-2 border-slate-900 rounded-full overflow-hidden shadow-md">
                <img 
                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bras%C3%A3o_de_Hortol%C3%A2ndia.png/1200px-Bras%C3%A3o_de_Hortol%C3%A2ndia.png" 
@@ -250,8 +277,6 @@ const App: React.FC = () => {
                  className="w-full h-full object-contain" 
                />
              </div>
-             
-             {/* Title Section */}
              <div className="flex flex-col justify-center">
                <h3 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-widest leading-none">Prefeitura Municipal de Hortolândia</h3>
                <h4 className="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider mt-1">Secretaria Municipal de Educação</h4>
@@ -259,7 +284,7 @@ const App: React.FC = () => {
              </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm bg-white p-6 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] print:border-none print:shadow-none print:p-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-sm bg-white p-6 rounded-xl border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
             <div className="flex flex-col gap-1">
               <label className="font-black text-slate-900 uppercase text-[10px] tracking-widest">Unidade Escolar</label>
               <input 
@@ -267,7 +292,7 @@ const App: React.FC = () => {
                 value={data.unidadeEscolar}
                 onChange={(e) => handleInputChange('unidadeEscolar', e.target.value)}
                 placeholder="Nome da Instituição"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -277,7 +302,7 @@ const App: React.FC = () => {
                 value={data.professor}
                 onChange={(e) => handleInputChange('professor', e.target.value)}
                 placeholder="Responsáveis pelo planejamento"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -287,7 +312,7 @@ const App: React.FC = () => {
                 value={data.mes}
                 onChange={(e) => handleInputChange('mes', e.target.value)}
                 placeholder="Ex: Abril/2024"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -297,31 +322,30 @@ const App: React.FC = () => {
                 value={data.anoTurma}
                 onChange={(e) => handleInputChange('anoTurma', e.target.value)}
                 placeholder="Ex: 2º Ciclo - Turma B"
-                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors print:border-slate-900"
+                className="border-b-2 border-slate-300 focus:border-emerald-600 outline-none py-1 font-bold text-slate-800 transition-colors"
               />
             </div>
           </div>
         </div>
 
-        {/* Table Structure */}
-        <div className="overflow-hidden border-2 border-slate-900 bg-white shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] print:shadow-none print:border">
-          <table className="w-full border-collapse table-fixed">
+        {/* Tabela de Dados */}
+        <div className="overflow-hidden border-2 border-slate-900 bg-white shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] print:shadow-none print:border-none">
+          <table className="w-full border-collapse">
             <thead>
               <tr className="bg-slate-900 text-white border-b-2 border-slate-900">
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Unidade Temática / Objeto de Conhecimento</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Habilidades</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[20%]">Estratégias Metodológicas</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[14%]">Recursos</th>
-                <th className="border-r-2 border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Avaliação</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Unidade Temática / Objeto de Conhecimento</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Habilidades</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[20%]">Estratégias Metodológicas</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[14%]">Recursos</th>
+                <th className="border-r border-slate-900 p-2 text-[10px] font-black uppercase text-center leading-tight w-[15%]">Avaliação</th>
                 <th className="p-2 text-[10px] font-black uppercase text-center leading-tight w-[18%]">Adaptação Curricular</th>
               </tr>
             </thead>
             <tbody>
               {data.rows.map((row) => (
-                <tr key={row.id} className="relative group border-b-2 border-slate-900 last:border-b-0 print:break-inside-avoid">
-                  {/* Coluna 1: Unidade e Objeto */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                <tr key={row.id} className="relative group border-b-2 border-slate-900 last:border-b-0 print:break-inside-auto">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print space-y-1 p-2 bg-slate-50 border-b border-slate-200">
                         <select 
                           className="w-full p-2 outline-none text-[10px] font-black bg-white text-emerald-800 border-2 border-emerald-100 rounded focus:border-emerald-500"
@@ -333,7 +357,6 @@ const App: React.FC = () => {
                             <option key={unit} value={unit}>{unit}</option>
                           ))}
                         </select>
-
                         <select 
                           className="w-full p-2 outline-none text-[10px] font-bold bg-white text-blue-800 border-2 border-blue-100 rounded focus:border-blue-500"
                           value={row.objetoConhecimento}
@@ -345,156 +368,82 @@ const App: React.FC = () => {
                           ))}
                         </select>
                       </div>
-                      
-                      <div className="p-3 text-[11px] leading-relaxed text-slate-900">
-                        {row.unidadeTematica && <div className="font-black uppercase mb-2 text-emerald-700">{row.unidadeTematica}</div>}
+                      <div className="p-3 text-[11px] print:text-[9px] leading-relaxed text-slate-900">
+                        {row.unidadeTematica && <div className="font-black uppercase mb-1 text-emerald-700">{row.unidadeTematica}</div>}
                         {row.objetoConhecimento && <div className="font-semibold text-slate-700">{row.objetoConhecimento}</div>}
-                        {!row.unidadeTematica && !row.objetoConhecimento && <span className="no-print text-slate-300 italic font-normal">Nenhum selecionado</span>}
                       </div>
-
                       <button 
                         onClick={() => handleAiSuggest(row.id, row.unidadeTematica, row.objetoConhecimento)}
                         disabled={isAiLoading === row.id}
                         className="no-print absolute bottom-2 right-2 p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all shadow-md flex items-center gap-1 text-[9px] font-black uppercase tracking-tighter"
-                        title="Gerar sugestões pedagógicas com IA"
                       >
-                        {isAiLoading === row.id ? (
-                          <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin rounded-full" />
-                        ) : (
-                          <SparklesIcon className="w-3 h-3" />
-                        )}
-                        <span>Sugerir IA</span>
+                        {isAiLoading === row.id ? <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin rounded-full" /> : <SparklesIcon className="w-3 h-3" />}
+                        <span>IA</span>
                       </button>
                     </div>
                   </td>
-
-                  {/* Coluna 2: Habilidades */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print p-2 bg-slate-50 border-b border-slate-200">
                         <div className="max-h-32 overflow-y-auto border-2 border-slate-200 rounded p-1 bg-white space-y-1">
-                          <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1 mb-1">Habilidades:</div>
                           {SKILLS.map((skill) => (
-                            <label key={skill.id} className="flex items-start gap-2 p-1.5 hover:bg-slate-50 cursor-pointer rounded transition-colors group">
-                              <input 
-                                type="checkbox"
-                                checked={row.habilidades.includes(skill.text)}
-                                onChange={() => toggleSkill(row.id, skill.text)}
-                                className="mt-0.5 w-3 h-3 text-emerald-600 rounded focus:ring-emerald-500"
-                              />
-                              <span className="text-[9px] font-bold text-slate-600 leading-tight group-hover:text-slate-900">{skill.id}</span>
+                            <label key={skill.id} className="flex items-start gap-2 p-1 hover:bg-slate-50 cursor-pointer rounded">
+                              <input type="checkbox" checked={row.habilidades.includes(skill.text)} onChange={() => toggleSkill(row.id, skill.text)} className="mt-0.5 w-3 h-3 text-emerald-600" />
+                              <span className="text-[9px] font-bold text-slate-600 leading-tight">{skill.id}</span>
                             </label>
                           ))}
                         </div>
                       </div>
-
-                      <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:font-normal placeholder:text-slate-300"
-                        placeholder="Habilidades selecionadas..."
-                        value={row.habilidades}
-                        onChange={(e) => handleRowChange(row.id, 'habilidades', e.target.value)}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement;
-                          target.style.height = 'auto';
-                          target.style.height = target.scrollHeight + 'px';
-                        }}
-                      />
+                      <textarea className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent" value={row.habilidades} onChange={(e) => handleRowChange(row.id, 'habilidades', e.target.value)} />
                     </div>
                   </td>
-
-                  {/* Coluna 3: Estratégias Metodológicas */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           {FIXED_METHODOLOGY_TEXT.map((text, idx) => (
-                            <p key={idx} className={`text-[10px] leading-relaxed ${text.includes("Atividades desenvolvidas:") ? 'font-black' : 'font-medium'}`}>
-                              {text}
-                            </p>
+                            <p key={idx} className={`text-[10px] print:text-[8px] leading-relaxed ${text.includes("Atividades desenvolvidas:") ? 'font-black' : 'font-medium'}`}>{text}</p>
                           ))}
                         </div>
                       </div>
-                      
-                      <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Descreva aqui as atividades específicas..."
-                        value={row.estrategias}
-                        onChange={(e) => handleRowChange(row.id, 'estrategias', e.target.value)}
-                      />
+                      <textarea className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent" value={row.estrategias} onChange={(e) => handleRowChange(row.id, 'estrategias', e.target.value)} />
                     </div>
                   </td>
-
-                  {/* Coluna 4: Recursos */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px] relative">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px] relative">
                       <div className="no-print p-2 bg-slate-50 border-b border-slate-200">
                         <div className="max-h-32 overflow-y-auto border-2 border-slate-200 rounded p-1 bg-white space-y-1">
-                          <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-1 mb-1">Recursos Sugeridos:</div>
                           {RESOURCES_LIST.map((resource) => (
-                            <label key={resource} className="flex items-center gap-2 p-1.5 hover:bg-slate-50 cursor-pointer rounded transition-colors group">
-                              <input 
-                                type="checkbox"
-                                checked={row.recursos.includes(resource)}
-                                onChange={() => toggleResource(row.id, resource)}
-                                className="w-3 h-3 text-emerald-600 rounded focus:ring-emerald-500"
-                              />
-                              <span className="text-[9px] font-bold text-slate-600 leading-tight group-hover:text-slate-900">{resource}</span>
+                            <label key={resource} className="flex items-center gap-2 p-1 hover:bg-slate-50 cursor-pointer rounded">
+                              <input type="checkbox" checked={row.recursos.includes(resource)} onChange={() => toggleResource(row.id, resource)} className="w-3 h-3 text-emerald-600" />
+                              <span className="text-[9px] font-bold text-slate-600 leading-tight">{resource}</span>
                             </label>
                           ))}
                         </div>
                       </div>
-
-                      <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Recursos..."
-                        value={row.recursos}
-                        onChange={(e) => handleRowChange(row.id, 'recursos', e.target.value)}
-                      />
+                      <textarea className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent" value={row.recursos} onChange={(e) => handleRowChange(row.id, 'recursos', e.target.value)} />
                     </div>
                   </td>
-
-                  {/* Coluna 5: Avaliação */}
-                  <td className="border-r-2 border-slate-900 p-0 align-top">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                  <td className="border-r border-slate-900 p-0 align-top">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <p className="text-[10px] font-medium leading-relaxed">
-                          {FIXED_EVALUATION_TEXT}
-                        </p>
+                        <p className="text-[10px] print:text-[8px] font-medium leading-relaxed">{FIXED_EVALUATION_TEXT}</p>
                       </div>
-                      
-                      <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Informações adicionais da avaliação..."
-                        value={row.avaliacao}
-                        onChange={(e) => handleRowChange(row.id, 'avaliacao', e.target.value)}
-                      />
+                      <textarea className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent" value={row.avaliacao} onChange={(e) => handleRowChange(row.id, 'avaliacao', e.target.value)} />
                     </div>
                   </td>
-
-                  {/* Coluna 6: Adaptação Curricular */}
                   <td className="p-0 align-top relative">
-                    <div className="flex flex-col h-full min-h-[220px]">
+                    <div className="flex flex-col h-full min-h-[180px]">
                       <div className="p-3 bg-slate-50 border-b border-slate-100 text-slate-900">
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           {FIXED_ADAPTATION_TEXT.map((text, idx) => (
-                            <p key={idx} className="text-[10px] font-medium leading-relaxed">
-                              {text}
-                            </p>
+                            <p key={idx} className="text-[10px] print:text-[8px] font-medium leading-relaxed">{text}</p>
                           ))}
                         </div>
                       </div>
-                      
-                      <textarea 
-                        className="w-full flex-grow p-3 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-800 bg-transparent placeholder:italic placeholder:text-slate-300"
-                        placeholder="Informações adicionais de adaptação..."
-                        value={row.adaptacao}
-                        onChange={(e) => handleRowChange(row.id, 'adaptacao', e.target.value)}
-                      />
+                      <textarea className="w-full flex-grow p-3 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-800 bg-transparent" value={row.adaptacao} onChange={(e) => handleRowChange(row.id, 'adaptacao', e.target.value)} />
                     </div>
-                    <button 
-                      onClick={() => removeRow(row.id)}
-                      className="no-print absolute -right-10 top-2 p-2 text-slate-400 hover:text-red-500 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
-                    >
+                    <button onClick={() => removeRow(row.id)} className="no-print absolute -right-10 top-2 p-2 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
                       <TrashIcon className="w-5 h-5" />
                     </button>
                   </td>
@@ -503,57 +452,41 @@ const App: React.FC = () => {
             </tbody>
           </table>
           
-          {/* Botão de Adicionar */}
           <div className="no-print p-4 bg-slate-50 flex justify-center border-t-2 border-slate-900">
-            <button 
-              onClick={addRow}
-              className="flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white px-8 py-2.5 rounded-full transition-all font-black text-xs shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-1 active:translate-y-1"
-            >
+            <button onClick={addRow} className="flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white px-8 py-2 rounded-full transition-all font-black text-xs shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
               <PlusIcon className="w-5 h-5" />
               <span>ADICIONAR UNIDADE DIDÁTICA</span>
             </button>
           </div>
           
-          {/* Observações */}
-          <div className="border-t-2 border-slate-900 p-6 bg-white min-h-[120px] print:border-t">
-            <label className="block font-black text-slate-900 uppercase text-[11px] mb-3 tracking-widest border-l-4 border-emerald-600 pl-2">Observações Adicionais / Ocorrências Mensais</label>
-            <textarea 
-              value={data.observacoes}
-              onChange={(e) => handleInputChange('observacoes', e.target.value)}
-              className="w-full h-24 resize-none outline-none text-[11px] leading-relaxed font-medium text-slate-700 bg-transparent placeholder:text-slate-200"
-              placeholder="Anotações gerais..."
-            />
+          <div className="border-t-2 border-slate-900 p-4 bg-white min-h-[80px] print:border-t">
+            <label className="block font-black text-slate-900 uppercase text-[10px] mb-2 tracking-widest border-l-4 border-emerald-600 pl-2">Observações Adicionais / Ocorrências Mensais</label>
+            <textarea value={data.observacoes} onChange={(e) => handleInputChange('observacoes', e.target.value)} className="w-full h-16 resize-none outline-none text-[11px] print:text-[9px] leading-relaxed font-medium text-slate-700 bg-transparent" placeholder="Anotações gerais..." />
           </div>
         </div>
 
-        {/* Rodapé de Impressão (Fiel ao modelo) */}
-        <div className="mt-12 hidden print:block">
-          <div className="flex justify-between items-end border-t-2 border-slate-900 pt-6">
-            <div className="flex flex-col gap-1">
-              <div className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">
-                Documento gerado eletronicamente em: {new Date().toLocaleDateString('pt-BR')} às {new Date().toLocaleTimeString('pt-BR')}
-              </div>
+        {/* RODAPÉ DE ASSINATURAS (Fiel ao modelo solicitado) */}
+        <div className="mt-8 hidden print:block">
+          <div className="flex justify-between items-end border-t border-slate-400 pt-4">
+            <div className="text-[8px] text-slate-500 font-bold uppercase">
+              Gerado em: {new Date().toLocaleDateString('pt-BR')} {new Date().toLocaleTimeString('pt-BR')}
             </div>
-            <div className="flex gap-16">
+            <div className="flex gap-12">
               <div className="flex flex-col items-center">
-                <div className="w-64 border-b-2 border-slate-900 mb-2"></div>
-                <span className="text-[10px] font-black uppercase text-slate-900 tracking-tighter italic">Assinatura do(a) Professor(a)</span>
+                <div className="w-48 border-b border-slate-900 mb-1"></div>
+                <span className="text-[9px] font-black uppercase text-slate-900">Assinatura Professor(a)</span>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-64 border-b-2 border-slate-900 mb-2"></div>
-                <span className="text-[10px] font-black uppercase text-slate-900 tracking-tighter italic">Visto da Coordenação Pedagógica</span>
+                <div className="w-48 border-b border-slate-900 mb-1"></div>
+                <span className="text-[9px] font-black uppercase text-slate-900">Visto Coordenação</span>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Botão de Topo */}
       <div className="no-print fixed bottom-8 right-8 flex flex-col gap-4">
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="p-4 bg-slate-900 text-white rounded-full shadow-2xl hover:bg-black transition-all active:scale-90 border-2 border-white"
-        >
+        <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="p-4 bg-slate-900 text-white rounded-full shadow-2xl hover:bg-black transition-all active:scale-90 border-2 border-white">
           <ChevronDoubleDownIcon className="w-6 h-6 rotate-180" />
         </button>
       </div>
