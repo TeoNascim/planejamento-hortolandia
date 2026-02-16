@@ -11,6 +11,8 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         @media print {
             @page {
@@ -18,17 +20,12 @@
                 margin: 5mm;
             }
             body {
-                background-color: white !important;
+                background-color: white;
                 margin: 0;
                 padding: 0;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
             }
             .no-print {
                 display: none !important;
-            }
-            .print-only {
-                display: block !important;
             }
             .print-container {
                 padding: 0 !important;
@@ -36,44 +33,32 @@
                 width: 100% !important;
                 max-width: none !important;
             }
-            table {
-                width: 100% !important;
-                border-collapse: collapse !important;
-                table-layout: fixed !important;
+            table, th, td {
                 border: 1px solid #000 !important;
+                border-collapse: collapse !important;
             }
             th {
                 background-color: #0f172a !important;
                 color: white !important;
-                font-size: 8px !important;
-                padding: 4px !important;
-                text-transform: uppercase !important;
-                border: 1px solid #000 !important;
+                -webkit-print-color-adjust: exact;
             }
-            td {
-                font-size: 9px !important;
-                padding: 6px !important;
-                vertical-align: top !important;
-                border: 1px solid #000 !important;
-                word-wrap: break-word !important;
+            .bg-slate-50 {
+                background-color: #f8fafc !important;
             }
-            textarea, input {
+            textarea {
                 border: none !important;
-                outline: none !important;
                 resize: none !important;
+                overflow: hidden !important;
                 width: 100% !important;
-                background: transparent !important;
-                font-size: 9px !important;
-                height: auto !important;
-                display: block !important;
-                overflow: visible !important;
+                min-height: auto !important;
             }
             tr {
-                page-break-inside: auto !important;
+                page-break-inside: avoid;
+                page-break-after: auto;
             }
-        }
-        .print-only {
-            display: none;
+            thead {
+                display: table-header-group;
+            }
         }
     </style>
 <script type="importmap">
