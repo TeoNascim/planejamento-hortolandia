@@ -11,11 +11,18 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
+            color: #1e293b;
         }
+        
+        /* Oculta a área de impressão na tela */
+        .print-only-layout {
+            display: none;
+        }
+
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 5mm;
+                margin: 8mm;
             }
             body {
                 background-color: white !important;
@@ -24,59 +31,54 @@
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
+            /* Esconde tudo o que é da interface de edição */
             .no-print {
                 display: none !important;
             }
-            .print-only {
+            /* Mostra apenas o layout de impressão fiel ao anexo */
+            .print-only-layout {
                 display: block !important;
-            }
-            .print-container {
-                padding: 0 !important;
-                margin: 0 !important;
                 width: 100% !important;
-                max-width: none !important;
             }
             table {
                 width: 100% !important;
                 border-collapse: collapse !important;
-                table-layout: fixed !important;
-                border: 1.5px solid #000 !important;
+                border: 1px solid #000 !important;
+                table-layout: fixed;
             }
             th {
-                background-color: #f1f5f9 !important;
-                color: #000 !important;
-                font-size: 8px !important;
-                padding: 4px !important;
-                text-transform: uppercase !important;
                 border: 1px solid #000 !important;
-                font-weight: 900 !important;
+                padding: 6px 4px !important;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                background-color: transparent !important;
+                color: #000 !important;
             }
             td {
-                font-size: 9px !important;
-                padding: 5px !important;
-                vertical-align: top !important;
                 border: 1px solid #000 !important;
+                padding: 8px !important;
+                font-size: 10.5px !important;
+                vertical-align: top !important;
+                line-height: 1.4 !important;
                 word-wrap: break-word !important;
-            }
-            textarea, input {
-                border: none !important;
-                outline: none !important;
-                resize: none !important;
-                width: 100% !important;
-                background: transparent !important;
-                font-size: 9px !important;
-                height: auto !important;
-                display: block !important;
                 overflow: visible !important;
-                color: #000 !important;
             }
-            /* Garante que o conteúdo flua sem quebras bruscas */
+            .turma-bar {
+                background-color: #435b66 !important;
+                color: white !important;
+                text-align: center;
+                padding: 4px;
+                font-weight: bold;
+                font-size: 12px;
+                text-transform: uppercase;
+                border: 1px solid #000;
+                border-bottom: none;
+            }
             tr {
                 page-break-inside: auto !important;
             }
-        }
-        .print-only {
-            display: none;
         }
     </style>
 <script type="importmap">
