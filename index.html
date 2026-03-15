@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento Mensal - Hortolândia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        /* Oculta a área de impressão na tela */
+        .print-only-layout {
+            display: none;
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 8mm;
+            }
+            body {
+                background-color: white !important;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            /* Esconde tudo o que é da interface de edição */
+            .no-print {
+                display: none !important;
+            }
+            /* Mostra apenas o layout de impressão fiel ao anexo */
+            .print-only-layout {
+                display: block !important;
+                width: 100% !important;
+            }
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                border: 1px solid #000 !important;
+                table-layout: fixed;
+            }
+            th {
+                border: 1px solid #000 !important;
+                padding: 6px 4px !important;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                text-align: center !important;
+                vertical-align: middle !important;
+                background-color: transparent !important;
+                color: #000 !important;
+            }
+            td {
+                border: 1px solid #000 !important;
+                padding: 8px !important;
+                font-size: 10.5px !important;
+                vertical-align: top !important;
+                line-height: 1.4 !important;
+                word-wrap: break-word !important;
+                overflow: visible !important;
+            }
+            .turma-bar {
+                background-color: #435b66 !important;
+                color: white !important;
+                text-align: center;
+                padding: 4px;
+                font-weight: bold;
+                font-size: 12px;
+                text-transform: uppercase;
+                border: 1px solid #000;
+                border-bottom: none;
+            }
+            tr {
+                page-break-inside: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
