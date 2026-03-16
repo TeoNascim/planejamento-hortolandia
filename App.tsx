@@ -214,7 +214,7 @@ const App: React.FC = () => {
         <div className="bg-white p-8 rounded-2xl border-2 border-slate-200 shadow-xl mb-10">
           <div className="flex items-center gap-6 mb-8">
             <div className="w-24 h-24 border-2 border-slate-200 rounded-full p-2 bg-slate-50">
-              <img src="https://www.hortolandia.sp.gov.br/images/logo_hortolandia.png" className="w-full h-full object-contain" />
+              <img src="/logo.svg" className="w-full h-full object-contain" />
             </div>
             <div>
               <h2 className="text-4xl font-black text-slate-900 uppercase leading-none">Editor de Planejamento</h2>
@@ -359,7 +359,7 @@ const App: React.FC = () => {
         <div className="mb-6">
           <div className="flex items-center justify-center relative min-h-[96px]">
             <div className="absolute left-0 top-0 w-24 h-24">
-              <img src="https://www.hortolandia.sp.gov.br/images/logo_hortolandia.png" className="w-full h-full object-contain" />
+              <img src="/logo.svg" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-[28px] font-bold text-slate-700">Planejamento Mensal</h1>
           </div>
