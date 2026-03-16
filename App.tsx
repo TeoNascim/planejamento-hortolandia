@@ -189,7 +189,7 @@ const App: React.FC = () => {
   const handleAiSuggest = async (id: string, tema: string, objeto: string) => {
     if (!tema && !objeto) return;
     setIsAiLoading(id);
-    const suggestions = await suggestEducationalContent(`Unidade: ${tema}, Objeto: ${objeto}`);
+    const suggestions = await suggestEducationalContent(`Unidade: ${tema}, Objeto: ${objeto}`, data.anoTurma);
     if (suggestions) {
       setData(prev => ({ ...prev, rows: prev.rows.map(row => row.id === id ? { ...row, ...suggestions } : row) }));
     }
