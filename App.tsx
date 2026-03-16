@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { PlanningData, PlanningRow } from './types';
 import { suggestEducationalContent } from './services/geminiService';
-import { 
-  PlusIcon, 
-  TrashIcon, 
-  PrinterIcon, 
+import {
+  PlusIcon,
+  TrashIcon,
+  PrinterIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline';
 
@@ -34,7 +34,7 @@ const SKILLS = [
 
 const RESOURCES_LIST = [
   "Apito profissional", "Bolas de Futsal", "Bolas de Voleibol", "Bolas de Basquetebol", "Bolas de Handebol",
-  "Bolas de Borracha", "Cones", "Arcos (Bambolês)", "Colchonetes", "Coletes coloridos", "Petecas", 
+  "Bolas de Borracha", "Cones", "Arcos (Bambolês)", "Colchonetes", "Coletes coloridos", "Petecas",
   "Raquetes de Tênis de Mesa", "Caixa de som Bluetooth", "Corda", "Tatames", "Giz escolar", "Fita Crepe", "Musica", "Quadra", "Folha de sulfite"
 ];
 
@@ -198,7 +198,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-20 bg-slate-50">
-      
+
       {/* 1. INTERFACE DE EDIÇÃO (Visível apenas na tela) */}
       <header className="no-print sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-3">
@@ -221,7 +221,7 @@ const App: React.FC = () => {
               <p className="font-bold text-slate-400 mt-1 uppercase tracking-widest text-sm">Prefeitura Municipal de Hortolândia</p>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-1">
               <label className="text-[10px] font-black text-slate-400 uppercase">Unidade Escolar</label>
@@ -251,7 +251,7 @@ const App: React.FC = () => {
                   <TrashIcon className="w-5 h-5" />
                 </button>
               </div>
-              
+
               <div className="p-6 grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div className="md:col-span-3 space-y-4">
                   <div>
@@ -284,9 +284,9 @@ const App: React.FC = () => {
                   <label className="block text-[10px] font-black text-slate-400 uppercase mb-2">Estratégias / Atividades</label>
                   <div className="mb-3 flex flex-col gap-1 p-1 border rounded bg-slate-50">
                     {STRATEGY_OPTIONS.map(s => (
-                      <button 
-                        key={s} 
-                        onClick={() => toggleStrategy(row.id, s)} 
+                      <button
+                        key={s}
+                        onClick={() => toggleStrategy(row.id, s)}
                         className={`text-[9px] text-left font-bold px-2 py-1.5 rounded border transition-colors ${row.estrategias.includes(s) ? 'bg-emerald-100 border-emerald-300 text-emerald-800' : 'bg-white border-slate-200 hover:bg-emerald-50'}`}
                       >
                         {s}
@@ -310,9 +310,9 @@ const App: React.FC = () => {
                     <label className="block text-[10px] font-black text-slate-400 uppercase mb-2">Avaliação</label>
                     <div className="mb-3 flex flex-col gap-1 p-1 border rounded bg-slate-50 max-h-32 overflow-y-auto">
                       {EVALUATION_OPTIONS.map(e => (
-                        <button 
-                          key={e} 
-                          onClick={() => toggleEvaluation(row.id, e)} 
+                        <button
+                          key={e}
+                          onClick={() => toggleEvaluation(row.id, e)}
                           className={`text-[9px] text-left font-bold px-2 py-1 rounded border transition-colors ${row.avaliacao.includes(e) ? 'bg-blue-100 border-blue-300 text-blue-800' : 'bg-white border-slate-200 hover:bg-blue-50'}`}
                         >
                           {e}
@@ -325,9 +325,9 @@ const App: React.FC = () => {
                     <label className="block text-[10px] font-black text-slate-400 uppercase mb-2">Adaptação Curricular</label>
                     <div className="mb-3 flex flex-col gap-1 p-1 border rounded bg-slate-50 max-h-32 overflow-y-auto">
                       {ADAPTATION_OPTIONS.map(a => (
-                        <button 
-                          key={a} 
-                          onClick={() => toggleAdaptation(row.id, a)} 
+                        <button
+                          key={a}
+                          onClick={() => toggleAdaptation(row.id, a)}
                           className={`text-[9px] text-left font-bold px-2 py-1 rounded border transition-colors ${row.adaptacao.includes(a) ? 'bg-orange-100 border-orange-300 text-orange-800' : 'bg-white border-slate-200 hover:bg-orange-50'}`}
                         >
                           {a}
@@ -356,18 +356,19 @@ const App: React.FC = () => {
       {/* 2. LAYOUT DE IMPRESSÃO (Fiel ao anexo, visível apenas no PDF/Impressora) */}
       <div className="print-only-layout">
         {/* Cabeçalho superior */}
-        <div className="flex items-start mb-4">
-           <div className="w-24 h-24 flex-shrink-0">
-             <img src="https://www.hortolandia.sp.gov.br/images/logo_hortolandia.png" className="w-full object-contain" />
-           </div>
-           <div className="flex-grow text-center">
-             <h1 className="text-xl font-bold text-emerald-800 mb-4">Planejamento Mensal</h1>
-             <div className="text-left ml-4 space-y-1 text-[11px] font-medium text-slate-700">
-               <p><strong>Unidade Escolar:</strong> {data.unidadeEscolar || "________________________________________________"}</p>
-               <p><strong>Professor(a) / Agentes Educacionais:</strong> {data.professor || "________________________________________________"}</p>
-               <p><strong>Mês:</strong> {data.mes || "__________________"}</p>
-             </div>
-           </div>
+        <div className="mb-6">
+          <div className="flex items-center justify-center relative min-h-[96px]">
+            <div className="absolute left-0 top-0 w-24 h-24">
+              <img src="https://www.hortolandia.sp.gov.br/images/logo_hortolandia.png" className="w-full h-full object-contain" />
+            </div>
+            <h1 className="text-[28px] font-bold text-slate-700">Planejamento Mensal</h1>
+          </div>
+
+          <div className="text-left mt-4 space-y-2 text-[13px] font-medium text-slate-800">
+            <p>Unidade Escolar: <span className={data.unidadeEscolar ? "text-red-600" : ""}>{data.unidadeEscolar || "________________________________________________"}</span></p>
+            <p>Professor(a) / Agentes Educacionais: <span className={data.professor ? "text-red-600" : ""}>{data.professor || "________________________________________________"}</span></p>
+            <p>Mês: <span className={data.mes ? "text-red-600" : ""}>{data.mes || "__________________"}</span></p>
+          </div>
         </div>
 
         {/* Faixa de Turma */}
@@ -379,7 +380,7 @@ const App: React.FC = () => {
         <table>
           <thead>
             <tr>
-              <th className="w-[18%]">Unidade Temática/<br/>Objeto de Conhecimento</th>
+              <th className="w-[18%]">Unidade Temática/<br />Objeto de Conhecimento</th>
               <th className="w-[18%]">Habilidades</th>
               <th className="w-[20%]">Estratégias Metodológicas</th>
               <th className="w-[14%]">Recursos</th>
@@ -395,7 +396,7 @@ const App: React.FC = () => {
                   <div className="font-bold mb-2 uppercase">{row.unidadeTematica}</div>
                   <div className="whitespace-pre-wrap">{row.objetoConhecimento}</div>
                 </td>
-                
+
                 {/* Habilidades */}
                 <td>
                   <div className="whitespace-pre-wrap">{row.habilidades}</div>
@@ -439,26 +440,26 @@ const App: React.FC = () => {
             ))}
             {/* Linha de Observações dentro da tabela ou logo abaixo conforme o estilo */}
             <tr>
-               <td colSpan={6} className="p-0 border-t-2 border-black">
-                 <div className="p-2">
-                    <strong className="text-[11px] block mb-1">Observações:</strong>
-                    <p className="whitespace-pre-wrap">{data.observacoes || "-"}</p>
-                 </div>
-               </td>
+              <td colSpan={6} className="p-0 border-t-2 border-black">
+                <div className="p-2">
+                  <strong className="text-[11px] block mb-1">Observações:</strong>
+                  <p className="whitespace-pre-wrap">{data.observacoes || "-"}</p>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
 
         {/* Rodapé de Assinaturas (Espaçamento para baixo) */}
         <div className="mt-16 flex justify-around items-end">
-            <div className="flex flex-col items-center">
-              <div className="w-64 border-b border-black mb-1"></div>
-              <span className="text-[10px] font-bold uppercase">Assinatura Professor(a)</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-64 border-b border-black mb-1"></div>
-              <span className="text-[10px] font-bold uppercase">Visto Coordenação</span>
-            </div>
+          <div className="flex flex-col items-center">
+            <div className="w-64 border-b border-black mb-1"></div>
+            <span className="text-[10px] font-bold uppercase">Assinatura Professor(a)</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-64 border-b border-black mb-1"></div>
+            <span className="text-[10px] font-bold uppercase">Visto Coordenação</span>
+          </div>
         </div>
       </div>
     </div>
