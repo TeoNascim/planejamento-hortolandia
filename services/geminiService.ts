@@ -11,7 +11,7 @@ export async function suggestEducationalContent(prompt: string, anoTurma: string
       Com base no tema fornecido, sugira habilidades, estratégias metodológicas, recursos e avaliação.
       A turma/ano alvo é: ${anoTurma || 'Ensino Fundamental'}. Suas sugestões, especialmente as habilidades da BNCC de Educação Física, DEVEM ser estritamente coerentes e voltadas para essa faixa etária/ano escolar.
       
-      Regra de Formatação: Para TODOS os tópicos (habilidades, estratégias, recursos e avaliação), NÃO use vírgulas ou pontos e vírgulas para separar os itens. Em vez disso, coloque CADA ITEM EM UMA NOVA LINHA, iniciando com um traço "- " e pulando uma linha entre eles.
+      Regra de Formatação: Para TODOS os tópicos (habilidades, estratégias, recursos e avaliação), NÃO use vírgulas ou pontos e vírgulas para separar os itens. Em vez disso, coloque CADA ITEM EM UMA NOVA LINHA, iniciando com um traço "- " (um item abaixo do outro, sem pular linhas em branco).
       
       Retorne APENAS um objeto JSON com as chaves: habilidades, estrategias, recursos, avaliacao. Todas essas chaves devem ser strings (texto longo formátado com as quebras de linha).
       

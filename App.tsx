@@ -356,18 +356,17 @@ const App: React.FC = () => {
       {/* 2. LAYOUT DE IMPRESSÃO (Fiel ao anexo, visível apenas no PDF/Impressora) */}
       <div className="print-only-layout">
         {/* Cabeçalho superior */}
-        <div className="mb-6">
-          <div className="flex items-center justify-center relative min-h-[96px]">
-            <div className="absolute left-0 top-0 w-24 h-24">
-              <img src="/logo.svg" className="w-full h-full object-contain" />
-            </div>
-            <h1 className="text-[28px] font-bold text-slate-700">Planejamento Mensal</h1>
+        <div className="flex items-start mb-4">
+          <div className="w-24 h-24 flex-shrink-0">
+            <img src="/logo.svg" className="w-full object-contain" />
           </div>
-
-          <div className="text-left mt-4 space-y-2 text-[13px] font-medium text-slate-800">
-            <p>Unidade Escolar: <span className={data.unidadeEscolar ? "text-red-600" : ""}>{data.unidadeEscolar || "________________________________________________"}</span></p>
-            <p>Professor(a) / Agentes Educacionais: <span className={data.professor ? "text-red-600" : ""}>{data.professor || "________________________________________________"}</span></p>
-            <p>Mês: <span className={data.mes ? "text-red-600" : ""}>{data.mes || "__________________"}</span></p>
+          <div className="flex-grow text-center">
+            <h1 className="text-xl font-bold text-emerald-800 mb-4">Planejamento Mensal</h1>
+            <div className="text-left ml-4 space-y-1 text-[11px] font-medium text-slate-700">
+              <p><strong>Unidade Escolar:</strong> <span className={data.unidadeEscolar ? "text-red-600" : ""}>{data.unidadeEscolar || "________________________________________________"}</span></p>
+              <p><strong>Professor(a) / Agentes Educacionais:</strong> <span className={data.professor ? "text-red-600" : ""}>{data.professor || "________________________________________________"}</span></p>
+              <p><strong>Mês:</strong> <span className={data.mes ? "text-red-600" : ""}>{data.mes || "__________________"}</span></p>
+            </div>
           </div>
         </div>
 
